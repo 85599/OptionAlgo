@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<!-- Styles -->
+<style>
+#chartdiv {
+	width: 100%;
+	height: 500px;
+}
+</style>
+
+<!-- Chart code -->
+
+
+<br></br>
+<div ng-if="showGraph" style="width: 100%; display: inline-flex;">
+	<div ng-if="showGraph" style="width: 200px;">
+		<b>Strategy Positions 
+		<br></br>
+		<table style="width:300px;">
+			<tr ng-repeat="x in positionList">
+			<td>{{x.position}}  - {{x.entryPrice}}</td>
+			</tr>
+		</table>
+		 
+		<br></br> Max. Profit
+			&nbsp;&nbsp;&nbsp;&nbsp; {{maxProfit}}<br></br> Max. Loss
+			&nbsp;&nbsp;&nbsp;&nbsp; {{maxLoss}}<br></br> Breakevens
+			&nbsp;&nbsp;&nbsp;&nbsp; {{breakEvens}}<br></br> Total PNL
+			&nbsp;&nbsp;&nbsp;&nbsp; {{totalPnl}}
+		</b>
+	</div>
+	<!-- <div  ng-if ="showGraph" style="height: 450px; width: calc(100% - 200px);">
+        <am-chart id="myFirstChart" options="amChartOptions"></am-chart>
+    </div> -->
+
+	<div class="col-md-3">
+		<ul class="nav nav-pills nav-stacked" style="display: inline-flex;">
+			<li ng-class="{ active: isSet(1) }"><a href ng-click="setTab(1)">PAYOFF
+					CHART</a></li>
+			<li ng-class="{ active: isSet(2) }"><a href ng-click="setTab(2)">GREEKS</a>
+			</li>
+			<li ng-class="{ active: isSet(3) }"><a href ng-click="setTab(3)">P&L</a>
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-8">
+		<div class="jumbotron">
+			<div ng-show="isSet(1)">
+				<div ng-if="showGraph"
+					style="height: 450px; width: calc(100% - 200px);">
+					<am-chart id="myFirstChart" options="amChartOptions"></am-chart>
+				</div>
+
+			</div>
+			<div ng-show="isSet(2)">
+				<table class="table table-hover;" style="border: 1px solid black; border-collapse: collapse;">
+					<thead>
+						<tr>
+							<th>Position</th>
+							<th>IV</th>
+							<th>Delta</th>
+							<th>Theta</th>
+							<th>Gamma</th>
+							<th>Vega</th>
+					</thead>
+					</tr>
+					<tr ng-repeat="x in greek">
+						<td>{{x.position}}</td>
+						<td>{{x.iv}}</td>
+						<td>{{x.delta}}</td>
+						<td>{{x.theta}}</td>
+						<td>{{x.gamma}}</td>
+						<td>{{x.vega}}</td>
+					</tr>
+				</table>
+			</div>
+			<div ng-show="isSet(3)">
+				 <table class="table table-hover;" style="border: 1px solid black; border-collapse: collapse;">
+					<thead>
+						<tr>
+							<th>Position</th>
+							<th>Entry Price</th>
+							<th>Current Price</th>
+							<th>Exit Price</th>
+							<th>P&L</th>
+					</thead>
+					</tr>
+					 
+					<tr ng-repeat="x in pnl">
+						<td>{{x.position}}</td>
+						<td>{{x.entryPrice}}</td>
+						<td>{{x.currentPrice}}</td>
+						<td>{{x.exitPrice}}</td>
+						<td>{{x.pnl}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+
+	</div>
+
+	<!-- div   id="chartdiv"></div> -->
+
+
+	</body>
+	<script src="js/lib/angular.min.js"></script>
+	<script src="js/lib/angular-datepicker.js"></script>
+	<script src="js/lib/angular-datepicker.css"></script>
+	<script src="js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+	<script src="js/app/app.js"></script>
+	<script src="js/app/UserController.js"></script>
+	<script src="js/app/UserService.js"></script>
+	<link rel="stylesheet" href="css/lib/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/lib/bootstrap-combined.min.css" />
+	<link rel="stylesheet" href="css/app/app.css" />
+	<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+	<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+	<script
+		src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+	<link rel="stylesheet"
+		href="https://www.amcharts.com/lib/3/plugins/export/export.css"
+		type="text/css" media="all" />
+	<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+	<!-- Resources -->
+	<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+	<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+	<script
+		src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+	<link rel="stylesheet"
+		href="https://www.amcharts.com/lib/3/plugins/export/export.css"
+		type="text/css" media="all" />
+	<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+	<script src="js/lib/amcharts.js"></script>
+	<script src="js/lib/serial.js"></script>
+	<script src="js/lib/amChartsDirective.js"></script>
+	<script src="js/lib/jquery.min.js"></script>
+	<script src="js/lib/bootstrap.min.js"></script>
+</html>
